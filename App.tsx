@@ -1,20 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 
-export default function App() {
+import React, { useEffect } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import Home from './src/components/home'
+import Login from './src/components/login'
+import useToken from './src/states/useToken';
+
+const App = () => {
+  const {token} = useToken();
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+      {token ? <Home /> : <Login />}
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
   },
 });
+
+export default App;
